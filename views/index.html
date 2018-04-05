@@ -26,13 +26,13 @@
     <main>
       <article class="stack" id="fluffy-shanks">
 
-        <div class="card" id="fs001" style="background: red;">
+        <div class="card" style="background: red;">
           <div class="panel text" style="font-size: 64px;">
             <p>Hello <em>World</em></p>
           </div>
         </div>
         
-        <div class="card" id="fs002">
+        <div class="card">
           <div class="panel text" style="height: 50%;">
             <p>This is a <strong>test.</strong></p>
           </div>
@@ -41,8 +41,8 @@
           </div>
         </div>
         
-        <div class="card" id="fs003">
-          <div class="panel text top right" data-font-size="36px" style="height: 25%; font-size: 36px;">
+        <div class="card">
+          <div class="panel text top right" style="height: 25%; font-size: 36px;">
             <p><strong><em>This</em></strong> is a test.</p>
           </div>
           <div class="panel image" style="height: 75%;">
@@ -50,17 +50,26 @@
           </div>
         </div>
         
-        <div class="card" id="fs004">
-          <div class="panel text" data-font-size="64px" style="font-size: 64px;">
+        <div class="card">
+          <div class="panel text" style="font-size: 64px;">
             <p>However the <a href="https://yiibu.com">picture shrinks</a> too much (width: 100%) when the screen is getting more narrow, and shows the body background-color in the bottom screen. The other method, width: auto;, only makes the image full size and does not respond to the screen size.</p>
           </div>
         </div>
 
-        <div class="card" id="fs005">
-            <div class="panel text" data-font-size="24px" style="font-size: 24px;">
-              <p>However the <a href="https://yiibu.com">picture shrinks</a> too much (width: 100%) when the screen is getting more narrow, and shows the body background-color in the bottom screen. The other method, width: auto;, only makes the image full size and does not respond to the screen size.</p>
+        <div class="card">
+            <div class="panel text">
+                <p>You can even embed (web) apps!</p>
             </div>
-            <div class="panel video controls">
+            <div class="panel embed">
+                <iframe data-src="https://count-taravancil.hashbase.io/" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+          </div>
+
+        <div class="card">
+            <div class="panel text" style="font-size: 24px;">
+              <p><mark>However the <a href="https://yiibu.com">picture shrinks</a> too much (width: 100%) when the screen is getting more narrow, and shows the body background-color in the bottom screen. The other method, width: auto;, only makes the image full size and does not respond to the screen size.</mark></p>
+            </div>
+            <div class="panel video">
                 <video playsinline autoplay muted loop>
                   <source src="/images/atomic.mp4" type="video/mp4">
                     Sorry, your browser doesn't support embedded videos, 

@@ -7,37 +7,23 @@
 // https://gist.github.com/mekwall/1263939
 
 (function($) {
-  $.fn.textFit = function() {
+  $.fn.textFit = function(defaultSize) {
     return this.each(function() {
       var card = $(this).parent()[0],
-        panel = this,
-        text = $("p", this)[0],
-        maxFontSize = parseInt($(panel).attr("data-font-size") || "14px");
-      fontSize = parseInt(
-        window.getComputedStyle(panel).getPropertyValue("font-size")
-      );
-      padding = parseInt(window.getComputedStyle(text).padding);
-
-      console.log(
-        "text: " + text.clientHeight + " scroll: " + text.scrollHeight + " panel: " + panel.clientHeight
-      );
-
-      size = fontSize;
-      while (text.clientHeight <= panel.clientHeight && size < maxFontSize) {
-        console.log(
-          "text: " + text.clientHeight + " panel: " + panel.clientHeight + " size: " + size + " max: " + maxFontSize
-        );
-        size = size + 2;
-        panel.style.fontSize = size + "px";
+          panel = this,
+          text = $("p", this)[0],
+          maxFontSize = parseInt($(panel).attr("data-font-size") || defaultSize),
+          currentFontSize = parseInt(window.getComputedStyle(panel).getPropertyValue("font-size")),
+          padding = parseInt(window.getComputedStyle(text).padding),
+          fontSize = currentFontSize;
+      while (text.clientHeight <= panel.clientHeight && fontSize < maxFontSize) {
+        fontSize = fontSize + 2;
+        panel.style.fontSize = fontSize + "px";
       }
-      while (text.scrollHeight > panel.clientHeight) {
-        size = size - 2;
-        panel.style.fontSize = size + "px";
+      while (text.scrollHeight - padding > panel.clientHeight - padding) {
+        fontSize = fontSize - 2;
+        panel.style.fontSize = fontSize + "px";
       }
-      console.log(
-        "text: " + text.clientHeight + " scroll: " + text.scrollHeight + " panel: " + panel.clientHeight
-      );
-      console.log(" size: " + size + " max: " + maxFontSize);
     });
   };
 })(jQuery);
@@ -61,7 +47,7 @@ $(function() {
   throttle("resize", "optimizedResize");
 
   function updateText(event) {
-    $(".panel.text").textFit();
+    $(".panel.text").textFit("15px");
   }
 
   function updateArrows(event, slick) {
@@ -77,28 +63,79 @@ $(function() {
     }
   }
 
-  $(".stack").on("init", function(event, slick) {
-    updateArrows(event, slick);
-  });
-
-  $(".stack").on("afterChange", function(event, slick, currentSlide, nextSlide) {
-    updateArrows(event, slick);
-    console.log($(slick.$slides.get(currentSlide)).attr('id')); 
-  });
-
-  $(".stack").slick({
-    arrows: true,
-    infinite: false,
-    appendArrows: $("main")
-  });
-
-  $('video').each(function(i, obj) {
-    obj.play();
+  var playingVideo, playingiFrame;
+  var textPanels = $(".panel.text");
+  textPanels.each(function (i, obj) {
+    if (obj.style.fontSize) {
+      $(obj).attr('data-font-size', obj.style.fontSize);
+    }
   });
 
   window.addEventListener("optimizedResize", function() {
     updateText();
   });
 
-  updateText();
+  $(".stack").on("beforeChange", function(event, slick, currentSlide, nextSlide) {
+
+    var id = $(slick.$slides.get(nextSlide)).attr('id'),
+    iframe = $("#" + id).find("iframe");
+
+    if (playingiFrame) {
+      playingiFrame.each(function (i,obj) {
+          // $(obj).attr("src", null);
+      })
+    }
+
+    if (iframe.length) {
+      iframe.each(function (i, obj) {
+        if ($(obj).attr("src") == undefined) {
+          $(obj).attr("src", $(obj).attr("data-src"));
+        }
+      });
+      playingiFrame = iframe;
+    }
+
+  });
+
+  $(".stack").on("afterChange", function(event, slick, currentSlide) {
+    updateArrows(event, slick);
+    window.location.hash = id;
+    
+    var id = $(slick.$slides.get(currentSlide)).attr('id'),
+        video = $("#" + id).find("video");
+
+    if (playingVideo) {
+      playingVideo.each(function (i, obj) {
+        obj.pause();
+      });
+    }
+
+    if (video.length) {
+      video.each(function (i, obj) {
+        obj.play();
+      });
+      playingVideo = video;
+    }
+  });
+
+  $(".stack").on("init", function(event, slick) {
+    updateArrows(event, slick);
+    updateText();
+  });
+
+  $(".stack").slick({
+    dots: true,
+    arrows: true,
+    infinite: false,
+    waitForAnimate: false,
+    appendDots: $("main"),
+    appendArrows: $("main")
+  });
+
+  if(window.location.hash) {
+    var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+    var id = $("#" + hash);
+    var card = $('.stack .card').index(id);
+    $(".stack").slick('slickGoTo', card, true);
+  }
 });
