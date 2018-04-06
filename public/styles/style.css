@@ -52,6 +52,9 @@ html, body {
   position: fixed;
   -webkit-overflow-scrolling: touch;
 }
+body {
+  background: #efefef;
+}
 
 iframe {
   margin: 0;
@@ -77,22 +80,16 @@ mark {
   -webkit-box-decoration-break: clone;
 }
 
-main > footer {
-  margin: 15px 0 0 0;
-  text-align: center
+footer {
+  display: none;
 }
 
-@media (max-width: 480px) {
-  header, footer, .slick-arrow {
-    display: none !important;
-  }
-}
-
-@media (min-width: 480px) {
-  .stack {
-    box-shadow: 0 3px 3px rgba(0,0,0,0.35);
-    max-width: 375px;
-    max-height: 560px;
+@media (min-width: 720px) and (min-height: 680px) {
+  footer {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
 }
 
@@ -104,6 +101,16 @@ main > footer {
   background-color: #dedede;
   position: relative;
 }
+
+@media (min-width: 480px) {
+  .stack {
+    margin: 36px;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.35);
+    max-width: 375px;
+    max-height: 560px;
+  }
+}
+
 .card {
   position: relative;
   width: 100%;
@@ -111,7 +118,10 @@ main > footer {
   display: flex;
   overflow: none;
   flex-direction: column;
-  background-color: mediumturquoise;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-color: #fff;
   cursor: -webkit-grab;
   cursor: -moz-grab;
   cursor: grab;
@@ -127,7 +137,7 @@ main > footer {
 
 .text p {
   font-size: inherit;
-  line-height: 1.3em;
+  line-height: 1.4em;
   margin: 0;
   padding: 10px;
   width: 100%;
@@ -201,9 +211,16 @@ main > footer {
 }
 .link a {
   display: block;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.35);
+  text-decoration: none;
+  display: flex;
+  overflow: none;
+  flex-direction: column;
 }
 .link h1 {
-  font-size: inherit;
+  font-size: 125%;
   line-height: 1.3em;
   margin: 0;
   padding: 0;
@@ -220,8 +237,25 @@ main > footer {
 }
 .link img {
   width: 100%;
+  height: 50%;
+  overflow: hidden;
+  object-fit: cover;
   display: block;
 }
+.link.compact a {
+  width: 25%;
+}
+.link.compact img {
+  width: 25%;
+}
+.link.default img {
+  width: 100%;
+}
+.link.extended img {
+  width: 100%;
+}
+
+
 .clip {
   margin: 10;
   padding: 10px;
@@ -233,3 +267,207 @@ main > footer {
 .slick-list, .slick-track {
   height: 100%;
 } 
+
+/* Text panel themes                                                         */
+/* Blue Theme                                                                */
+.theme-blue {
+  background: #fff;
+}
+.theme-blue p {
+  color: #000;
+}
+.theme-blue a {
+  color: #0075ea;
+}
+.theme-blue mark {
+  color: #000;
+  background: #c3e8f8;
+}
+.theme-blue mark a, .theme-blue a mark {
+  color: #0075ea;
+}
+.theme-blue-invert {
+  background: #000;
+}
+.theme-blue-invert p {
+  color: #fff;
+}
+.theme-blue-invert a {
+  color: #15a4fc;
+}
+.theme-blue-invert mark {
+  color: #000;
+  background: #c3e8f8;
+}
+.theme-blue-invert mark a, .theme-blue-invert a mark {
+  color: #0075ea;
+}
+/* Yellow Theme                                                              */
+.theme-yellow {
+  background: #fff;
+}
+.theme-yellow p {
+  color: #000;
+}
+.theme-yellow a {
+  color: #0075ea;
+}
+.theme-yellow mark {
+  color: #000;
+  background: #fff4b3;
+}
+.theme-yellow mark a, .theme-yellow a mark {
+  color: #0075ea;
+}
+.theme-yellow-invert {
+  background: #000;
+}
+.theme-yellow-invert p {
+  color: #fff;
+}
+.theme-yellow-invert a {
+  color: #15a4fc;
+}
+.theme-yellow-invert mark {
+  color: #000;
+  background: #fff4b3;
+}
+.theme-yellow-invert mark a, .theme-yellow-invert a mark {
+  color: #0075ea;
+}
+/* Orange Theme                                                              */
+.theme-orange {
+  background: #fff;
+}
+.theme-orange p {
+  color: #000;
+}
+.theme-orange a {
+  color: #f46300;
+}
+.theme-orange mark {
+  color: #000;
+  background: #fce2a2;
+}
+.theme-orange mark a, .theme-orange a mark {
+  color: #ff4800;
+}
+.theme-orange-invert {
+  background: #000;
+}
+.theme-orange-invert p {
+  color: #fff;
+}
+.theme-orange-invert a {
+  color: #f46300;
+}
+.theme-orange-invert mark {
+  color: #000;
+  background: #fff4b3;
+}
+.theme-orange-invert mark a, .theme-orange-invert a mark {
+  color: #ff4800;
+}
+/* Red Theme                                                                 */
+.theme-red {
+  background: #fff;
+}
+.theme-red p {
+  color: #000;
+}
+.theme-red a {
+  color: #ff0039;
+}
+.theme-red mark {
+  color: #000;
+  background: #ffd3c7;
+}
+.theme-red mark a, .theme-red a mark {
+  color: #ff0039;
+}
+.theme-red-invert {
+  background: #000;
+}
+.theme-red-invert p {
+  color: #fff;
+}
+.theme-red-invert a {
+  color: #ff0039;
+}
+.theme-red-invert mark {
+  color: #000;
+  background: #ffd3c7;
+}
+.theme-red-invert mark a, .theme-red-invert a mark {
+  color: #ff0039;
+}
+/* Purple Theme                                                              */
+.theme-purple {
+  background: #fff;
+}
+.theme-purple p {
+  color: #000;
+}
+.theme-purple a {
+  color: #9400ff;
+}
+.theme-purple mark {
+  color: #000;
+  background: #d7d9f2;
+}
+.theme-purple mark a, .theme-purple a mark {
+  color: #8000d7;
+}
+.theme-purple-invert {
+  background: #000;
+}
+.theme-purple-invert p {
+  color: #fff;
+}
+.theme-purple-invert a {
+  color: #f793fb;
+}
+.theme-purple-invert mark {
+  color: #000;
+  background: #d7d9f2;
+}
+.theme-purple-invert mark a, .theme-purple-invert a mark {
+  color: #8000d7;
+}
+/* Green Theme                                                               */
+.theme-green {
+  background: #fff;
+}
+..theme-green p {
+  color: #000;
+}
+.theme-green a {
+  color: #12bc00;
+}
+.theme-green mark {
+  color: #000;
+  background: #dbea8e;
+}
+.theme-green mark a, .theme-green a mark {
+  color: #058b00;
+}
+.theme-green-invert {
+  background: #000;
+}
+.theme-green-invert p {
+  color: #fff;
+}
+.theme-green-invert a {
+  color: #aefb4a;
+}
+.theme-green-invert mark {
+  color: #000;
+  background: #dbea8e;
+}
+.theme-green-invert mark a, .theme-green-invert a mark {
+  color: #058b00;
+}
+/* Transparent                                                               */
+.transparent {
+  background: none;
+}

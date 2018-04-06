@@ -37,14 +37,14 @@ var optimizedResize = (function() {
 
 // adapted from https://gist.github.com/andrewbranch/6995056
 (function($) {
-  function AutoShrinker($element) {
+  function TextWatcher($element) {
       this.$element = $element;
       this.$text = $("p", $element);
       this.initialFontSize = parseFloat($element.css("fontSize"));
       this.currentFontSize = this.initialFontSize;
       this.padding = parseFloat(this.$text.css("padding"));
       this.delta = 2;
-      this.resize = function() {
+      this.update = function() {
         var maxHeight = this.$element.height() - this.padding,
             newFontSize = this.currentFontSize;
 
@@ -59,15 +59,63 @@ var optimizedResize = (function() {
         this.currentFontSize = newFontSize;
       };
   }
-  $.fn.autoshrink = function() {
+  function LayoutWatcher($element) {
+    this.$element = $element;
+    this.$layouts = [
+      {"type": "link", "breakpoints": {"compact": {"min": 0, "max": 150}, "default": {"min": 150, "max": 250}, "extended": {"min": 250, "max": 99999}}},
+      {"type": "clip", "breakpoints": {"tiny": {"min": 0, "max": 80}, "std": {"min": 80, "max": 150}, "full": {"min": 150, "max": 99999}}},
+      {"type": "none", "breakpoints": {}}
+    ];
+    var $this = this, layout = this.$layouts.forEach(function(layout) {
+      if ($($this.$element).hasClass(layout.type)) {
+        $this.$layout = layout;
+      }
+    });
+    this.$padding = parseFloat(this.$element.css("padding"));
+    this.update = function() {
+
+      var breakpoint,
+          height = this.$element.height() - this.$padding;
+      $.each(this.$layout.breakpoints, function(name, range) {
+        if (height >= range.min && height < range.max ) {
+          breakpoint = name;
+        }
+      });
+
+
+      // THIS SECTION NEEDS WORK
+        if (this.$breakpoint != breakpoint || this.$breakpoint === undefined) {
+          console.log("diff");
+
+        } else {
+          console.log("remove: " + this.$breapoint);
+          this.$element.removeClass(this.$breakpoint);
+        }
+        this.$element.addClass(breakpoint);
+        this.$breakpoint = breakpoint;
+
+      console.log("set: " + this.$breakpoint);
+    };
+  }
+  $.fn.textwatcher = function() {
       return this.each(function() {
-          var shrinker, $this = $(this);
-          $this.data("autoshrinker", shrinker = new AutoShrinker($this));
-          shrinker.resize();
+          var watcher, $this = $(this);
+          $this.data("textwatcher", watcher = new TextWatcher($this));
+          watcher.update();
           optimizedResize.add(function() {
-            shrinker.resize();
+            watcher.update();
         });
       });
+  };
+  $.fn.layoutwatcher = function(options) {
+    return this.each(function() {
+      var watcher, $this = $(this);
+      $this.data("layoutwacher", watcher = new LayoutWatcher($this));
+      watcher.update();
+      optimizedResize.add(function() {
+        watcher.update();
+      });
+    });
   };
 })(jQuery);
 
@@ -119,7 +167,7 @@ $(function() {
   $(".stack").slick({
     arrows: false,
     infinite: false,
-    waitForAnimate: false
+    waitForAnimate: true
   });
 
   if(window.location.hash) {
@@ -129,5 +177,16 @@ $(function() {
     $(".stack").slick('slickGoTo', card, true);
   }
 
-  $(".panel.text").autoshrink();
+  $(".panel.text").textwatcher();
+  $('.panel.link').layoutwatcher();
+
+  // these methods are *really* buggy, but they're here for convenience…
+  $(document).keydown(function(event) {
+    switch (event.keyCode) {
+        case 37: $(".stack").slick('slickPrev'); break;
+        case 38: $(".stack").slick('slickPrev'); break;
+        case 39: $(".stack").slick('slickNext'); break;
+        case 40: $(".stack").slick('slickNext'); break;
+    }
+});
 });
