@@ -64,6 +64,8 @@ var optimizedResize = (function() {
     this.$layouts = [
       {"type": "link", "breakpoints": {"compact": {"min": 0, "max": 150}, "default": {"min": 150, "max": 250}, "extended": {"min": 250, "max": 99999}}},
       {"type": "clip", "breakpoints": {"tiny": {"min": 0, "max": 80}, "std": {"min": 80, "max": 150}, "full": {"min": 150, "max": 99999}}},
+      {"type": "cover", "breakpoints": {"compact": {"min": 0, "max": 320}, "full": {"min": 320, "max": 99999}}},
+      {"type": "colophon", "breakpoints": {"tiny": {"min": 0, "max": 80}, "std": {"min": 80, "max": 150}, "full": {"min": 150, "max": 99999}}},
       {"type": "none", "breakpoints": {}}
     ];
     var $this = this, layout = this.$layouts.forEach(function(layout) {
@@ -136,6 +138,10 @@ $(function() {
       });
     }
 
+    var progress = Math.round(((nextSlide + 1)/slick.slideCount) * 100);
+    console.log(progress + " " + slick.slideCount + " " + nextSlide);
+    $(".progress span").css("width", progress + "%");
+
   });
 
   $(".stack").on("afterChange", function(event, slick, currentSlide) {
@@ -158,7 +164,7 @@ $(function() {
   });
 
   $(".stack").on("init", function(event, slick) {
-    
+    $( ".stack" ).append('<div class="progress"><span></span></div>');
   });
 
   $(".stack").slick({
@@ -176,6 +182,7 @@ $(function() {
 
   $(".panel.text").textwatcher();
   $('.panel.link').layoutwatcher();
+  $('.panel.cover').layoutwatcher();
 
   // these methods are *really* buggy, but they're here for convenience…
   $(document).keydown(function(event) {
