@@ -62,7 +62,7 @@ var optimizedResize = (function() {
   function LayoutWatcher($element) {
     this.$element = $element;
     this.$layouts = [
-      {"type": "link", "breakpoints": {"compact": {"min": 0, "max": 150}, "default": {"min": 150, "max": 250}, "extended": {"min": 250, "max": 99999}}},
+      {"type": "link", "breakpoints": {"tiny": {"min": 0, "max": 90}, "compact": {"min": 90, "max": 150}, "extended": {"min": 250, "max": 99999}}},
       {"type": "clip", "breakpoints": {"tiny": {"min": 0, "max": 80}, "std": {"min": 80, "max": 150}, "full": {"min": 150, "max": 99999}}},
       {"type": "cover", "breakpoints": {"compact": {"min": 0, "max": 320}, "full": {"min": 320, "max": 99999}}},
       {"type": "colophon", "breakpoints": {"tiny": {"min": 0, "max": 80}, "std": {"min": 80, "max": 150}, "full": {"min": 150, "max": 99999}}},
@@ -86,14 +86,11 @@ var optimizedResize = (function() {
 
       if (this.$layoutClass !== breakpointName) {
         if (this.$layoutClass !== undefined) {
-          console.log("remove: " + this.$layoutClass + " for " + breakpointName);
           this.$element.removeClass(this.$layoutClass);
         }
-        console.log("set: " + breakpointName);
         this.$element.addClass(breakpointName);
         this.$layoutClass = breakpointName;
       } 
-      console.log("layoutClass: " + this.$layoutClass);
     };
   }
   $.fn.textwatcher = function() {
@@ -164,7 +161,7 @@ $(function() {
   });
 
   $(".stack").on("init", function(event, slick) {
-    $( ".stack" ).append('<div class="progress"><span></span></div>');
+      $(".stack").append('<div class="progress"><span></span></div>');
   });
 
   $(".stack").slick({
@@ -180,6 +177,40 @@ $(function() {
     $(".stack").slick('slickGoTo', card, true);
   }
 
+  $("body").append('<nav class="controls"><button id="toggle">grid layout</button></nav>');
+  $("#toggle").click(function() {
+    if ($("body").hasClass("grid-layout")) {
+      $(".stack").slick({
+        arrows: false,
+        infinite: false,
+        waitForAnimate: true
+      });
+      
+      $("#toggle").text("grid layout");
+    } else {
+      $(".progress").remove();
+      $('.stack').slick('unslick');
+      $("#toggle").text("stack layout");
+      
+      var video = $(".stack").find("video");
+      if (video.length) {
+        video.each(function (i, obj) {
+          obj.play();
+        });
+        playingVideo = video;
+      }
+      iframe = $(".stack").find("iframe");
+      if (iframe.length) {
+        iframe.each(function (i, obj) {
+          if ($(obj).attr("src") == undefined) {
+            $(obj).attr("src", $(obj).attr("data-src"));
+          }
+        });
+      }
+    }
+    $("body").toggleClass("grid-layout");
+  });
+
   $(".panel.text").textwatcher();
   $('.panel.link').layoutwatcher();
   $('.panel.cover').layoutwatcher();
@@ -192,5 +223,5 @@ $(function() {
         case 39: $(".stack").slick('slickNext'); break;
         case 40: $(".stack").slick('slickNext'); break;
     }
-});
+  });
 });

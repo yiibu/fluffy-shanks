@@ -1,8 +1,7 @@
 
 /*
  * @group reset
- * ----------------------------------------------------------------------------------
- */
+ * ------------------------------------------------------------------------- */
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a,
@@ -20,21 +19,8 @@ blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q
 /* @end reset */
 
 /*
- * Font Faces
  * @group font-face
- * ----------------------------------------------------------------------------------
-
- 100 Extra Light or Ultra Light
- 200 Light or Thin
- 300 Book or Demi
- 400 Normal or Regular
- 500 Medium
- 600 Semibold, Demibold
- 700 Bold
- 800 Black, Extra Bold or Heavy
- 900 Extra Black, Fat, Poster or Ultra Black
-
- * ---------------------------------------------------------------------------------- */
+ * ------------------------------------------------------------------------- */
 
 @font-face {
   font-family: 'Zilla Slab';
@@ -77,7 +63,7 @@ blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q
 
 /*
  * @group <elements>
- * ---------------------------------------------------------------------------------- */
+ * ------------------------------------------------------------------------- */
 
 html, body {
   font-family: "Zilla Slab", helvetica, arial, sans-serif;
@@ -90,6 +76,10 @@ html, body {
 }
 body {
   background: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 iframe {
@@ -116,26 +106,84 @@ mark {
   -webkit-box-decoration-break: clone;
 }
 
-footer {
+/* @end <elements> */
+
+
+/*
+ * @group .etcetera
+ * ------------------------------------------------------------------------- */
+.controls {
   display: none;
 }
+.title-block {
+  display: none;
+}
+.remix {
+  display: none;
+  line-height: 0;
+}
+.remix a {
+  line-height: 0;
+}
 
-@media (min-width: 720px) and (min-height: 680px) {
-  footer {
-    display: block;
+@media (min-width: 720px) and (min-height: 860px) {
+  .controls {
     position: absolute;
     top: 20px;
+    right: 20px;
+    display: block;
+  }
+  .title-block {
+    padding: 20px;
+    display: block;
+    width: 100%;
+    text-align: right;
+  }
+  .title-block table {
+    text-align: left;
+    width: 480px;
+    border: 3px solid #333;
+  }
+  .title-block span {
+    display: block;
+    font-size: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .title-block span:after {
+    content: ":";
+  }
+  .title-block td {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 4px 10px;
+    border: 1px solid #333;
+  }
+}
+@media (min-width: 720px) and (min-height: 680px) {
+  .remix {
+    display: block;
+    position: absolute;
+    bottom: 18px;
     right: 20px;
   }
 }
 
-/* @end <elements> */
+/* @end .remix */
+
+/*
+ * @group .stack
+ * ------------------------------------------------------------------------- */
+
+ .slick-list, .slick-track {
+  height: 100%;
+} 
 
 .stack {
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 0 0 4px 0;
+  padding: 0 0 2px 0;
   overflow: hidden;
   background-color: #dedede;
   position: relative;
@@ -150,12 +198,74 @@ footer {
   }
 }
 
+@media (min-width: 720px) {
+  .grid-layout main {
+    padding: 60px 20px 0 20px;
+  }
+  .grid-layout .stack {
+    overflow: scroll;
+    display: inline-grid;
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: none;
+    background: none;
+    margin: 0;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(500px, 560px);
+  }
+  
+  .grid-layout .card {
+    width: 100%;
+    height: 100%;
+  }
+
+  .grid-layout .title-block {
+    position: relative;
+  }
+}
+
+@media (min-width: 900px) {
+  .grid-layout .stack {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1280px) {
+  .grid-layout .stack {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 1600px) {
+  .grid-layout .stack {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (min-width: 2200px) {
+  .grid-layout .stack {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+@media (min-width: 2400px) {
+  .grid-layout .stack {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+
+
+/* @end .stack */
+
+/*
+ * @group .card
+ * ------------------------------------------------------------------------- */
+
 .card {
   position: relative;
   width: 100%;
   height: 100%;
   display: flex;
-  overflow: none;
+  overflow: hidden;
   flex-direction: column;
   background-size: cover;
   background-position: 50% 50%;
@@ -165,6 +275,13 @@ footer {
   cursor: -moz-grab;
   cursor: grab;
 }
+
+/* @end .stack */
+
+/*
+ * @group .panel
+ * ------------------------------------------------------------------------- */
+
 .panel {
   flex: 1 1 auto;
   display: flex;
@@ -173,10 +290,17 @@ footer {
   overflow: hidden;
   position: relative;
 }
+
+/* @end .panel */
+
+/*
+ * @group .progress
+ * ------------------------------------------------------------------------- */
+
 .progress {
   background: #dedede;
   width: 100%;
-  height: 4px;
+  height: 2px;
   position: absolute;
   bottom: 0;
 }
@@ -188,14 +312,17 @@ footer {
   -webkit-transition: width 0.3s;
   transition: width 0.3s;
 }
+
+/* @end .progress */
+
 /*
  * @group .cover
- * ---------------------------------------------------------------------------------- */
+ * ------------------------------------------------------------------------- */
 
 .cover {
   margin: 0;
   display: flex;
-  overflow: none;
+  overflow: hidden;
   flex-direction: column;
 }
 .cover .artwork {
@@ -240,7 +367,7 @@ footer {
 .cover .attribution {
   display: flex;
   flex-direction: row;
-  padding: 12px 10px 20px 10px;
+  padding: 20px 10px 20px 10px;
 }
 .cover.compact .attribution {
   padding: 6px 10px 10px 10px;
@@ -248,7 +375,7 @@ footer {
 .cover .author {
   font-size: 18px;
   font-style: italic;
-  padding: 6px 10px 10px 10px;
+  padding: 4px 10px 10px 10px;
 }
 .cover.compact .author {
   font-size: 12px;
@@ -280,7 +407,11 @@ footer {
   height: 30px;
 }
 
-/* @end <elements> */
+/* @end .cover */
+
+/*
+ * @group .text
+ * ------------------------------------------------------------------------- */
 
 .text p {
   font-size: inherit;
@@ -310,6 +441,13 @@ footer {
 .text.justify p {
   text-align: justify;
 }
+
+/* @end .text */
+
+/*
+ * @group .video
+ * ------------------------------------------------------------------------- */
+
 .video video {
   display: block;
   width: 100%;
@@ -317,6 +455,13 @@ footer {
   object-fit: cover;
   object-position: 50% 50%;
 }
+
+/* @end .video */
+
+/*
+ * @group .image
+ * ------------------------------------------------------------------------- */
+
 .image img {
   display: block;
   width: 100%;
@@ -351,71 +496,184 @@ footer {
 .image.bottom-right img {
   object-position: 100% 100%;
 }
+/* @end .image */
+
+/*
+ * @group .embed
+ * ------------------------------------------------------------------------- */
+.embed {
+  padding: 10px;
+}
+.embed iframe {
+
+}
+ /* @end .embed */
+
+/*
+ * @group .link
+ * ------------------------------------------------------------------------- */
+
 .link {
   margin: 0;
-  padding: 10px;
+  padding: 20px;
   flex-direction: column;
 }
 .link a {
+  color: #000;
   display: block;
   padding: 10px;
   background: #fff;
   box-shadow: 0 3px 3px rgba(0,0,0,0.35);
   text-decoration: none;
   display: flex;
-  overflow: none;
+  overflow: hidden;
   flex-direction: column;
 }
-.link h1 {
-  font-size: 125%;
+.link .title{
+  font-size: 21px;
   line-height: 1.3em;
   margin: 0;
-  padding: 0;
+  padding: 6px 0 0 0;
   width: 100%;
   display: block;
 }
-.link p {
-  font-size: inherit;
+.link .description {
+  font-size: 15px;
   line-height: 1.3em;
   margin: 0;
-  padding: 0;
+  padding: 0 0 6px 0;
   width: 100%;
   display: block;
 }
-.link img {
+.link .source {
+  color: #999;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.link .preview {
   width: 100%;
   height: 50%;
   overflow: hidden;
   object-fit: cover;
   display: block;
 }
-.link.compact a {
+.link.compact a, .link.tiny a {
+  flex-direction: row;
+}
+.link.compact .meta, .link.tiny .meta{
+  padding: 0 0 0 10px;
+}
+.link.compact .preview {
   width: 25%;
 }
-.link.compact img {
-  width: 25%;
+.link.tiny .preview {
+  width: 15%;
 }
-.link.default img {
-  width: 100%;
+.link.tiny .title {
+  font-size: 16px;
+  padding: 0;
 }
-.link.extended img {
-  width: 100%;
+.link.tiny .description {
+  font-size: 12px;
+}
+.link.tiny .source {
+  font-size: 8px;
 }
 
+
+/* @end .link */
+
+/*
+ * @group .clip
+ * ------------------------------------------------------------------------- */
 
 .clip {
-  margin: 10;
-  padding: 10px;
+  margin: 0;
+  padding: 20px;
+  flex-direction: column;
 }
 .clip a {
+  color: #000;
+  display: block;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.35);
+  text-decoration: none;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+}
+.clip .source {
+  color: #999;
+  font-size: 11px;
+  padding: 10px 0 0 0;
+  text-transform: uppercase;
+}
+.clip .preview {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: 1px dashed #999;
+  overflow: hidden;
+  object-fit: cover;
   display: block;
 }
 
-.slick-list, .slick-track {
-  height: 100%;
-} 
+/* @end .clip */
 
-/* Text panel themes                                                         */
+/*
+ * @group .colophon
+ * ------------------------------------------------------------------------- */
+
+ .colophon {
+  padding: 10px;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+ }
+ .colophon .the-end {
+   text-align: center;
+ }
+ .colophon .emoji {
+   font-size: 48px;
+   display: block;
+   margin: 0 auto;
+ }
+ .colophon .attribution {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 10px 20px 10px;
+}
+.colophon.author {
+  font-size: 18px;
+  font-style: italic;
+  padding: 4px 10px 10px 10px;
+}
+.colophon .author a {
+  font-style: normal;
+  text-decoration: none;
+}
+.colophon .author a[href*="https://twitter.com"] {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+.colophon .avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+  display: block;
+  float: left;
+}
+
+ /* @end .link */
+
+/*
+ * @group Themes
+ * ------------------------------------------------------------------------- */
+
 /* Blue Theme                                                                */
 .theme-blue {
   background: #fff;

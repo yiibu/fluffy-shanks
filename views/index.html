@@ -25,7 +25,7 @@
   <main>
     <article class="stack" id="fluffy-shanks">
       <div id="fs001" class="card">
-        <div class="panel cover" style="height: 100%; font-size: 64px;">
+        <div class="panel cover" style="height: 100%">
           <img class="artwork" src="/images/butts.gif" />
           <div class="meta">
               <h1 class="title">What's the web <em>really</em> good for? 🤔</h1>
@@ -77,10 +77,12 @@
       <div id="fs005" class="card" style="background-image: url('/images/bojack.jpg')">
         <div class="panel link">
             <a href="https://yiibu.com" target="_blank">
-              <img src="/images/butts.gif" alt="preview" />
-              <h1>Title</h1>
-              <p>Description</p>
-              <small>wired.com</small>
+              <img class="preview" src="/images/butts.gif" alt="preview" />
+              <div class="meta">
+                  <h1 class="title">Title</h1>
+                  <p class="description">Description</p>
+                  <p class="source">wired.com</p>
+              </div>
             </a>
         </div>
         <div class="panel text theme-green" style="font-size: 21px;">
@@ -100,10 +102,9 @@
 
       <div id="fs007" class="card">
         <div class="panel clip">
-          <a href="https://yiibu.com">
-            <img src="" alt="preview" />
-            <h1>Title</h1>
-            <p>Description</p>
+          <a href="http://www.bbcamerica.com/anglophenia/2012/05/happy-towel-day-25-douglas-adams-quotes-to-live-by">
+            <img class="preview" src="/images/quote.png" alt="A common mistake that people make when trying to design something completely foolproof is to underestimate the ingenuity of complete fools." />
+            <p class="source">bbcamerica.com</p>
           </a>
         </div>
         <div class="panel text" style="font-size: 22px;">
@@ -130,20 +131,29 @@
         </div>
       </div>
 
-      <div id="fs001" class="card">
-        <div class="panel colophon" style="font-size: 64px;">
-          <p>Hello
-            <em>World</em>
-          </p>
+      <div id="fs009" class="card">
+        <div class="panel colophon" style="height:100%">
+          <p class="the-end"><span class="emoji">😢</span>You have reached the of of</p>
+          <h1 class="title">What's the web <em>really</em> good for? 🤔</h1>
+
+          <div class="attribution">
+              <img class="avatar" src="/images/bojack.jpg" />
+              <p class="author">by <a href="https://yiibu.com" title="Yiibu Design Ltd." target="_blank">Bryan & Stephanie Rieger</a> <a href="https://twitter.com/yiibu" target="_blank">@yiibu</a></p>
+          </div>
+          <h2>More stacks by username</h2>
         </div>
       </div>  
     </article>
   </main>
-  <footer>
-    <!-- Remix Button -->
-    <a href="https://glitch.com/edit/#!/remix/fluffy-shanks">
-      <img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix%402x.png?1513093958726" alt="remix button" aria-label="remix" height="33">
-    </a>
+  <aside class="remix">
+    <a href="https://glitch.com/edit/#!/remix/fluffy-shanks"><img src="https://cdn.glitch.com/2bdfb3f8-05ef-4035-a06e-2043962a3a13%2Fremix%402x.png?1513093958726" alt="remix button" aria-label="remix" height="33"></a>
+  </aside>
+  <footer class="title-block">
+    <table>
+      <tr><td colspan="2"><span>title</span> Hopscotch Prototype</td></tr>
+      <tr><td><span>project</span> Mozilla - Fluffy Shanks</td><td><span>date</span> 09/04/2018</td></tr>
+      <tr><td colspan="2"><span>created by</span> Bryan and Stephanie Rieger, Yiibu Design Ltd. <a href="">hello@yiibu.com</a></td></tr>
+    </table>
   </footer>
   <script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
     crossorigin="anonymous"></script>
