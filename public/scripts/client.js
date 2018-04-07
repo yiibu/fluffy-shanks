@@ -74,27 +74,24 @@ var optimizedResize = (function() {
     this.$padding = parseFloat(this.$element.css("padding"));
     this.update = function() {
 
-      var breakpoint,
+      var breakpointName,
           height = this.$element.height() - this.$padding;
       $.each(this.$layout.breakpoints, function(name, range) {
         if (height >= range.min && height < range.max ) {
-          breakpoint = name;
+          breakpointName = name;
         }
       });
 
-
-      // THIS SECTION NEEDS WORK
-        if (this.$breakpoint != breakpoint || this.$breakpoint === undefined) {
-          console.log("diff");
-
-        } else {
-          console.log("remove: " + this.$breapoint);
-          this.$element.removeClass(this.$breakpoint);
+      if (this.$layoutClass !== breakpointName) {
+        if (this.$layoutClass !== undefined) {
+          console.log("remove: " + this.$layoutClass + " for " + breakpointName);
+          this.$element.removeClass(this.$layoutClass);
         }
-        this.$element.addClass(breakpoint);
-        this.$breakpoint = breakpoint;
-
-      console.log("set: " + this.$breakpoint);
+        console.log("set: " + breakpointName);
+        this.$element.addClass(breakpointName);
+        this.$layoutClass = breakpointName;
+      } 
+      console.log("layoutClass: " + this.$layoutClass);
     };
   }
   $.fn.textwatcher = function() {
