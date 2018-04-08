@@ -180,13 +180,13 @@ $(function() {
   $("body").append('<nav class="controls"><button id="toggle">grid layout</button></nav>');
   $("#toggle").click(function() {
     if ($("body").hasClass("grid-layout")) {
+      $("#toggle").text("grid layout");
       $(".stack").slick({
         arrows: false,
         infinite: false,
         waitForAnimate: true
       });
-      
-      $("#toggle").text("grid layout");
+      $(".stack").slick("slickGoTo", 0, false);
     } else {
       $(".progress").remove();
       $('.stack').slick('unslick');

@@ -505,7 +505,8 @@ mark {
   padding: 10px;
 }
 .embed iframe {
-
+  width: 100%;
+  height: auto;
 }
  /* @end .embed */
 
@@ -843,7 +844,7 @@ mark {
 .theme-green {
   background: #fff;
 }
-..theme-green p {
+.theme-green p {
   color: #000;
 }
 .theme-green a {
