@@ -262,6 +262,8 @@ mark {
 
 .card {
   position: relative;
+  background-repeat: none;
+  background-size: cover;
   width: 100%;
   height: 100%;
   display: flex;
@@ -615,9 +617,13 @@ mark {
   height: 100%;
   padding: 10px;
   border: 1px dashed #999;
+  color: #000;
   overflow: hidden;
   object-fit: cover;
   display: block;
+}
+.clip .preview mark, .clip mark {
+  color: #000;
 }
 
 /* @end .clip */
@@ -675,6 +681,40 @@ mark {
  * @group Themes
  * ------------------------------------------------------------------------- */
 
+ /* DefaultTheme                                                             */
+
+.panel {
+  color: #000;
+  background-color: #fff;
+}
+.panel a {
+  color: #0075ea;
+}
+.panel mark {
+  color: #fff;
+  background-color: #000;
+}
+.panel mark a, .panel a mark {
+  color: #15a4fc;
+}
+.panel.invert {
+  color: #fff;
+  background-color: #000;
+}
+.panel.invert a {
+  color: #15a4fc;
+}
+.panel.invert mark {
+  color: #000;
+  background-color: #fff;
+}
+.panel.invert mark a, .panel.invert a mark {
+  color: #0075ea;
+}
+.panel.transparent {
+  background-color: transparent !important;
+}
+
 /* Blue Theme                                                                */
 .theme-blue {
   background: #fff;
@@ -692,20 +732,20 @@ mark {
 .theme-blue mark a, .theme-blue a mark {
   color: #0075ea;
 }
-.theme-blue-invert {
+.theme-blue.invert {
   background: #000;
 }
-.theme-blue-invert p {
+.theme-blue.invert p {
   color: #fff;
 }
-.theme-blue-invert a {
+.theme-blue.invert a {
   color: #15a4fc;
 }
-.theme-blue-invert mark {
+.theme-blue.invert mark {
   color: #000;
   background: #c3e8f8;
 }
-.theme-blue-invert mark a, .theme-blue-invert a mark {
+.theme-blue.invert mark a, .theme-blue.invert a mark {
   color: #0075ea;
 }
 /* Yellow Theme                                                              */
@@ -725,20 +765,20 @@ mark {
 .theme-yellow mark a, .theme-yellow a mark {
   color: #0075ea;
 }
-.theme-yellow-invert {
+.theme-yellow.invert {
   background: #000;
 }
-.theme-yellow-invert p {
+.theme-yellow.invert p {
   color: #fff;
 }
-.theme-yellow-invert a {
+.theme-yellow.invert a {
   color: #15a4fc;
 }
-.theme-yellow-invert mark {
+.theme-yellow.invert mark {
   color: #000;
   background: #fff4b3;
 }
-.theme-yellow-invert mark a, .theme-yellow-invert a mark {
+.theme-yellow.invert mark a, .theme-yellow.invert a mark {
   color: #0075ea;
 }
 /* Orange Theme                                                              */
@@ -758,20 +798,20 @@ mark {
 .theme-orange mark a, .theme-orange a mark {
   color: #ff4800;
 }
-.theme-orange-invert {
+.theme-orange.invert {
   background: #000;
 }
-.theme-orange-invert p {
+.theme-orange.invert p {
   color: #fff;
 }
-.theme-orange-invert a {
+.theme-orange.invert a {
   color: #f46300;
 }
-.theme-orange-invert mark {
+.theme-orange.invert mark {
   color: #000;
   background: #fff4b3;
 }
-.theme-orange-invert mark a, .theme-orange-invert a mark {
+.theme-orange.invert mark a, .theme-orange.invert a mark {
   color: #ff4800;
 }
 /* Red Theme                                                                 */
@@ -791,20 +831,20 @@ mark {
 .theme-red mark a, .theme-red a mark {
   color: #ff0039;
 }
-.theme-red-invert {
+.theme-red.invert {
   background: #000;
 }
-.theme-red-invert p {
+.theme-red.invert p {
   color: #fff;
 }
-.theme-red-invert a {
+.theme-red.invert a {
   color: #ff0039;
 }
-.theme-red-invert mark {
+.theme-red.invert mark {
   color: #000;
   background: #ffd3c7;
 }
-.theme-red-invert mark a, .theme-red-invert a mark {
+.theme-red.invert mark a, .theme-red.invert a mark {
   color: #ff0039;
 }
 /* Purple Theme                                                              */
@@ -824,20 +864,20 @@ mark {
 .theme-purple mark a, .theme-purple a mark {
   color: #8000d7;
 }
-.theme-purple-invert {
+.theme-purple.invert {
   background: #000;
 }
-.theme-purple-invert p {
+.theme-purple.invert p {
   color: #fff;
 }
-.theme-purple-invert a {
+.theme-purple.invert a {
   color: #f793fb;
 }
-.theme-purple-invert mark {
+.theme-purple.invert mark {
   color: #000;
   background: #d7d9f2;
 }
-.theme-purple-invert mark a, .theme-purple-invert a mark {
+.theme-purple.invert mark a, .theme.purple-invert a mark {
   color: #8000d7;
 }
 /* Green Theme                                                               */
@@ -857,23 +897,19 @@ mark {
 .theme-green mark a, .theme-green a mark {
   color: #058b00;
 }
-.theme-green-invert {
+.theme-green.invert {
   background: #000;
 }
-.theme-green-invert p {
+.theme-green.invert p {
   color: #fff;
 }
-.theme-green-invert a {
+.theme-green.invert a {
   color: #aefb4a;
 }
-.theme-green-invert mark {
+.theme-green.invert mark {
   color: #000;
   background: #dbea8e;
 }
-.theme-green-invert mark a, .theme-green-invert a mark {
+.theme-green.invert mark a, .theme-green.invert a mark {
   color: #058b00;
-}
-/* Transparent                                                               */
-.transparent {
-  background: none;
 }
