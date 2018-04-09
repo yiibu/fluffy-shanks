@@ -22,40 +22,13 @@ blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q
  * @group font-face
  * ------------------------------------------------------------------------- */
 
-@font-face {
-  font-family: 'Zilla Slab';
-  src: url('/fonts/zilla-slab/regular.woff2') format('woff2'),
-       url('/fonts/zilla-slab/regular.woff') format('woff'),
-       url('/fonts/zilla-slab/regular.ttf') format('truetype');
+ @font-face {
+  font-family: 'Icons';
+  src: url('/fonts/icons/icons.woff2') format('woff2'),
+       url('/fonts/icons/icons.woff') format('woff'),
+       url('/fonts/icons/icons.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
-  text-rendering: optimizeLegibility;
-}
-@font-face {
-  font-family: 'Zilla Slab';
-  src: url('/fonts/zilla-slab/italic.woff2') format('woff2'),
-       url('/fonts/zilla-slab/italic.woff') format('woff'),
-       url('/fonts/zilla-slab/italic.ttf') format('truetype');
-  font-style: italic;                         
-  font-weight: normal;
-  text-rendering: optimizeLegibility;
-}
-@font-face {
-  font-family: 'Zilla Slab';
-  src: url('/fonts/zilla-slab/bold.woff2') format('woff2'),
-       url('/fonts/zilla-slab/bold.woff') format('woff'),
-       url('/fonts/zilla-slab/bold.ttf') format('truetype');
-  font-style: normal;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-}
-@font-face {
-  font-family: 'Zilla Slab';
-  src: url('/fonts/zilla-slab/bold-italic.woff2') format('woff2'),
-       url('/fonts/zilla-slab/bold-italic.woff') format('woff'),
-       url('/fonts/zilla-slab/bold-italic.ttf') format('truetype');
-  font-style: italic;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
 }
 
@@ -66,7 +39,7 @@ blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q
  * ------------------------------------------------------------------------- */
 
 html, body {
-  font-family: "Zilla Slab", helvetica, arial, sans-serif;
+  font-family: "Zilla Slab", serif;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -124,6 +97,12 @@ mark {
 }
 .remix a {
   line-height: 0;
+}
+.iconify {
+  text-transform: lowercase;
+  text-decoration: none;
+  font-feature-settings: "liga","dlig";
+  font-family: "Icons", monospace;
 }
 
 @media (min-width: 720px) and (min-height: 860px) {
@@ -389,15 +368,23 @@ mark {
 }
 .cover .author a[href*="https://twitter.com"] {
   font-size: 14px;
-  font-weight: bold;
   display: block;
+}
+.cover .author a[href*="https://twitter.com"]:before {
+  content: "twitter";
+  padding-right: 4px;
+  font-size: 90%;
+  text-transform: lowercase;
+  text-decoration: none;
+  font-feature-settings: "liga","dlig";
+  font-family: "Icons", monospace;
 }
 .cover.compact .author a[href*="https://twitter.com"] {
   font-size: 10px;
 }
 .cover .avatar {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   overflow: hidden;
   object-fit: cover;
@@ -470,6 +457,20 @@ mark {
   height: 100%;
   object-fit: cover;
   object-position: 50% 50%;
+}
+.image a {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #0075ea;
+  display: block;
+  padding-top: 1px;
+  color: #fff !important;
+  font-size: 18px;
 }
 .image.top-left img {
   object-position: 0% 0%; 
@@ -553,6 +554,15 @@ mark {
   font-size: 11px;
   text-transform: uppercase;
 }
+.link .source:before {
+  content: "link";
+  font-size: 125%;
+  font-family: "Icons", monospace;
+  padding-right: 2px;
+  text-transform: lowercase;
+  text-decoration: none;
+  font-feature-settings: "liga","dlig";
+}
 .link .preview {
   width: 100%;
   height: 50%;
@@ -611,6 +621,7 @@ mark {
   font-size: 11px;
   padding: 10px 0 0 0;
   text-transform: uppercase;
+  position: relative;
 }
 .clip .preview {
   width: 100%;
@@ -621,6 +632,19 @@ mark {
   overflow: hidden;
   object-fit: cover;
   display: block;
+}
+.clip .source::after {
+  display: block;
+  color: #000;
+  content: "cut";
+  font-size: 14px;
+  text-transform: lowercase;
+  text-decoration: none;
+  font-feature-settings: "liga","dlig";
+  font-family: "Icons", monospace;
+  position: absolute;
+  top: -9px;
+  right: 18px;
 }
 .clip .preview mark, .clip mark {
   color: #000;
