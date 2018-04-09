@@ -177,10 +177,10 @@ $(function() {
     $(".stack").slick('slickGoTo', card, true);
   }
 
-  $("body").append('<nav class="controls"><button id="toggle">grid layout</button></nav>');
+  $("body").append('<nav class="controls"><span><strong>Fluffy Shanks</strong> - <em>concept prototype</em></span><button id="toggle">grid</button></nav>');
   $("#toggle").click(function() {
     if ($("body").hasClass("grid-layout")) {
-      $("#toggle").text("grid layout");
+      $("#toggle").text("grid");
       $(".stack").slick({
         arrows: false,
         infinite: false,
@@ -190,7 +190,7 @@ $(function() {
     } else {
       $(".progress").remove();
       $('.stack').slick('unslick');
-      $("#toggle").text("stack layout");
+      $("#toggle").text("stack");
       
       var video = $(".stack").find("video");
       if (video.length) {
