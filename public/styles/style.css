@@ -711,7 +711,7 @@ mark {
  .colophon .related::after {
    display: block;
    width: 100%;
-   content: "■";
+   content: "- the end -";
    text-align: center;
  }
 .colophon .author {
