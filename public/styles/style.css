@@ -191,33 +191,6 @@ mark {
 }
 
 @media (min-width: 720px) and (min-height: 860px) {
-  .controls {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    display: block;
-  }
-  .controls span {
-    font-size: 20px;
-    position: absolute;
-    top: 6px;
-    left: 20px;
-  }
-  .controls button {
-    position: absolute;
-    right: 20px;
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font-size: 30px;
-    text-transform: lowercase;
-    text-decoration: none;
-    font-feature-settings: "liga","dlig";
-    font-family: "Icons", monospace;
-  }
   .title-block {
     padding: 20px;
     display: block;
@@ -251,6 +224,33 @@ mark {
     position: absolute;
     bottom: 18px;
     right: 20px;
+  }
+  .controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    display: block;
+  }
+  .controls span {
+    font-size: 20px;
+    position: absolute;
+    top: 6px;
+    left: 20px;
+  }
+  .controls button {
+    position: absolute;
+    right: 20px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    text-transform: lowercase;
+    text-decoration: none;
+    font-feature-settings: "liga","dlig";
+    font-family: "Icons", monospace;
   }
 }
 
